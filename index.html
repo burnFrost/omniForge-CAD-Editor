@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CAD Editor - by burnFrost</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="editor-container">
+
+    <!-- TOP BAR -->
+    <header class="toolbar">
+        <button id="newBtn" class="btn">New JSON</button>
+        <button id="loadBtn" class="btn">Load JSON</button>
+        <input id="saveName" type="text" placeholder="scene.json" style="padding:6px; width:180px;">
+        <button id="saveBtn" class="btn">Save JSON</button>
+
+        <button id="exportSCADBtn" class="btn" style="margin-left:10px;">Export SCAD</button>
+        <button id="exportSTLBtn" class="btn" style="margin-left:10px;">Export STL</button>
+
+        <label style="margin-left:20px; font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:6px;">
+            <input type="checkbox" id="snapToggle" checked>
+            Snap
+        </label>
+
+        <label style="margin-left:10px; font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:6px;">
+            Grid Size
+            <select id="gridSize">
+                <option value="4">4 × 4</option>
+                <option value="8">8 × 8</option>
+                <option value="16" selected>16 × 16</option>
+                <option value="32">32 × 32</option>
+            </select>
+        </label>
+
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <!-- SHAPE BUTTONS -->
+<button class="tool-button" data-shape="square">Square</button>
+<button class="tool-button" data-shape="circle">Circle</button>
+<button class="tool-button" data-shape="triangle">Triangle</button>
+
+<hr style="border:0; border-top:1px solid var(--border); margin:12px 0;">
+
+<button id="cloneBtn" class="tool-button">Clone</button>
+
+<button id="deleteBtn" class="tool-button" style="color:#ff4d6d;">Delete</button>
+
+<hr style="border:0; border-top:1px solid var(--border); margin:12px 0;">
+
+<button id="undoBtn" class="tool-button">Undo</button>
+
+<button id="RedoBtn" class="tool-button">Redo</button>
+
+<hr style="border:0; border-top:1px solid var(--border); margin:12px 0;">
+
+
+
+        <!-- LOAD SAVES DROP BOX -->
+        <div id="dropZone"
+             style="border:2px dashed var(--accent-soft);
+                    padding:20px;
+                    text-align:center;
+                    border-radius:var(--radius);
+                    color:var(--text-dim);">
+            Drop JSON Save Here
+        </div>
+
+    </aside>
+
+    <!-- CANVAS -->
+    <main class="canvas">
+        <canvas id="viewport"></canvas>
+    </main>
+
+    <!-- PROPERTIES PANEL -->
+    <section class="properties">
+        <h2>Object Properties</h2>
+
+        <div class="widget">
+            <label>Name</label>
+            <input type="text" id="objName">
+        </div>
+
+        <div class="widget">
+            <label>Position (X, Y)</label>
+            <input type="number" id="posX">
+            <input type="number" id="posY">
+        </div>
+
+        <div class="widget">
+            <label>Size</label>
+            <input type="number" id="size">
+        </div>
+
+        <div class="widget">
+            <label>Scale (X, Y)</label>
+            <input type="number" id="scaleX" value="1" step="0.1">
+            <input type="number" id="scaleY" value="1" step="0.1">
+        </div>
+
+        <div class="widget">
+            <label>Rotation</label>
+            <input type="number" id="rot">
+        </div>
+
+        <div class="widget">
+            <label>Roundness</label>
+            <input type="number" id="roundness" value="0" min="0" max="100">
+        </div>
+
+        <!-- NEW THICKNESS PROPERTY -->
+        <div class="widget">
+            <label>Thickness</label>
+            <input type="number" id="thickness" value="10" min="1">
+        </div>
+
+        <div class="widget">
+            <label for="booleanToggle">Subtractive Mode</label>
+            <input type="checkbox" id="booleanToggle">
+        </div>
+
+        <button class="btn btn-success" id="applyBtn">Apply</button>
+    </section>
+
+</div>
+
+
+<!-- MODULES -->
+<script src="libs/camera.js"></script>
+<script src="libs/shapes.js"></script>
+<script src="libs/edit.js"></script>
+<script src="libs/undo.js"></script>
+<script src="libs/file.js"></script>
+<script src="app.js"></script>
+<script src="libs/export_scad.js"></script>
+<script src="libs/export_stl.js"></script>
+
+</body>
+</html>
+
